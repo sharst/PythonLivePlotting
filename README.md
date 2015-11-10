@@ -23,6 +23,7 @@ This library is maintained and tested in python 2.7 with matplotlib 1.3.1.
 A simple example is already given in plot.py. Try the following (e.g. from the python command line):
 ```     
 from plot import *
+import random
 
 fig = Figure(10)                        # Create a new figure with an x-axis-length of 10 seconds
     
