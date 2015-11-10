@@ -13,7 +13,9 @@ class BasePlot(object):
         self.y_vals = []
         fig.add_child(self)
     
-    def add_value(self, val, stamp=time.time()):
+    def add_value(self, val, stamp=None):
+        if stamp is None:
+            stamp = time.time()
         self.x_vals.append(stamp)
         self.y_vals.append(val)
 
@@ -43,8 +45,8 @@ class LinePlot(BasePlot):
         self.line = self.ax.plot([1], [1])[0]
     
     def refresh_plot_obj(self):
-        self.line.set_ydata(self.y_vals)
         self.line.set_xdata(self.x_vals)
+        self.line.set_ydata(self.y_vals)
 
 
 class VerticalLines(BasePlot):
@@ -57,7 +59,7 @@ class VerticalLines(BasePlot):
         self.color = color
         self.lines = self.ax.vlines(time.time(), self.starty, self.endy, color=self.color, lw=self.lw)
     
-    def add_value(self, stamp=time.time()):
+    def add_value(self, stamp=None):
         super(VerticalLines, self).add_value(0,stamp=stamp)
         self.value_added = True
     
@@ -92,17 +94,19 @@ class Figure(object):
 
 
 if __name__== "__main__":
-    
-    plt.ion()
+    #plt.ion()
     fig = Figure(10)
     
     lp = LinePlot(fig)
     vl = VerticalLines(fig)
-    
+    i = 0
     while True:
         lp.add_value(random.random())
         if random.random() > .9:
+            print "added"
             vl.add_value()
         fig.refresh()
+        fig.fig.savefig("im{:0>3d}.png".format(i))
+        i+=1
         time.sleep(.1)
     
