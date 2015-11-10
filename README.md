@@ -39,6 +39,8 @@ while True:
     
 ```
 
+![Sample output](https://github.com/sharst/PythonLivePlotting/blob/master/animation.gif)
+
 ## Planned enhancements
 * Enable color, style and linewidth arguments for all plotting elements
 * add histogram plot element
