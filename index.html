@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>PythonLivePlotting by sharst</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>PythonLivePlotting</h1>
+        <p>Collection of functions that makes live plotting of data in matplotlib a breeze</p>
+
+        <p class="view"><a href="https://github.com/sharst/PythonLivePlotting">View the Project on GitHub <small>sharst/PythonLivePlotting</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/sharst/PythonLivePlotting/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/sharst/PythonLivePlotting/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/sharst/PythonLivePlotting">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="pythonliveplotting" class="anchor" href="#pythonliveplotting" aria-hidden="true"><span class="octicon octicon-link"></span></a>PythonLivePlotting</h1>
+
+<p>Collection of functions that makes live plotting of data in matplotlib a breeze</p>
+
+<h2>
+<a id="scope" class="anchor" href="#scope" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scope</h2>
+
+<p>I have found that I'm rewriting the same code over and over again when trying to easily visualize a stream of data in matplotlib. That's why I've decided to rewrite it piece by piece into a coherent library.
+This set of functions was not written with the intent to be applicable to every situation out there, but rather to solve the specific problems I have been encountering personally. By releasing it, I simply hope that the code will help in it's current state. </p>
+
+<p>That being said, if you think that some specific enhancement would be especially cool, don't hesitate to file an enhancement request or (even better!) a pull request. </p>
+
+<p>For the time being, I've only included the little amount of functions I currently need.
+[[my internal link|internal-ref]]</p>
+
+<h2>
+<a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<ul>
+<li>Python 2.7 (other versions not tested)</li>
+<li>matplotlib</li>
+<li>numpy</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Currently, this is just a collection of classes in one file. To use, download the file and put it in the directory that you want to use it in, or somewhere on your PYTHONPATH.[[my internal link|internal-ref]]</p>
+
+<p>This library is maintained and tested in python 2.7 with matplotlib 1.3.1.</p>
+
+<h2>
+<a id="simple-example" class="anchor" href="#simple-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Simple example</h2>
+
+<p>A simple example is already given in plot.py. Try the following (e.g. from the python command line):</p>
+
+<pre><code>from plot import *
+import random
+
+fig = Figure(10)                        # Create a new figure with an x-axis-length of 10 seconds
+
+lp = LinePlot(fig, history=10)          # Add a LinePlot to that figure, keep data of the last 10 seconds stored
+vl = VerticalLines(fig, color='r')      # Add some red vertical lines to the figure
+
+while True:
+    lp.add_value(random.random())       # update the line plot with random numbers
+    if random.random() &gt; .9:
+        vl.add_value()                  # in 1 out of 10 cases, add a vertical line at the current time
+    fig.refresh()                       # redraw the figure
+    time.sleep(.1)                      # wait some time
+
+</code></pre>
+
+<p><img src="https://github.com/sharst/PythonLivePlotting/blob/master/animation.gif" alt="Sample output"></p>
+
+<h2>
+<a id="planned-enhancements" class="anchor" href="#planned-enhancements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Planned enhancements</h2>
+
+<ul>
+<li>Enable color, style and linewidth arguments for all plotting elements</li>
+<li>add histogram plot element</li>
+<li>auto-scale plot data history to figure size</li>
+</ul>
+
+<p>[[my internal link|internal-ref]]</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/sharst">sharst</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
