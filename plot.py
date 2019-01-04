@@ -70,10 +70,9 @@ class VerticalLines(BasePlot):
         self.value_added = True
 
     def refresh_plot_obj(self):
-        if self.value_added:
-            self.lines.remove()
-            self.lines = self.ax.vlines(self.x_vals, self.starty, self.endy, color=self.color, lw=self.lw)
-            self.value_added = False
+        self.lines.remove()
+        self.lines = self.ax.vlines(self.x_vals, self.starty, self.endy, color=self.color, lw=self.lw)
+        self.value_added = False
 
     def get_y_limits(self):
         return (self.starty, self.endy)
